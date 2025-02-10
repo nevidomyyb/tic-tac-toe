@@ -47,11 +47,8 @@ class Game():
                             self.p0 = False
                             computer_thinking = True
                             winner = board.check_winner()
-                            if winner != 0 and winner != "":
+                            if winner == "X" or winner == "O":
                                 game_over = True
-                            for l in board.board:
-                                print(l)
-                            print('----------------------')
                             if not game_over:
                                 threading.Thread(target=computer.ai_move, args=(board, lambda: self.set_ai_thinking(False))).start()
 
