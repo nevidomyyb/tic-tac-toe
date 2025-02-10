@@ -51,7 +51,7 @@ class Board():
         for row in range(3):
             for col in range(3):
                 if self.board[row][col] == "O":
-                    pygame.draw.circle(screen, 'purple', (col * self.square_size + (self.square_size//2), row * self.square_size + (self.square_size//2)), 100, 5)
+                    pygame.draw.circle(screen, 'red', (col * self.square_size + (self.square_size//2), row * self.square_size + (self.square_size//2)), 100, 5)
                 elif self.board[row][col] == "X":
                     pygame.draw.line(
                         screen, 'purple', 
