@@ -45,7 +45,7 @@ class Board():
         for thread in self.threads:
             thread.join()
         self.threads = []
-        self.stop_threads = False
+        self.stop_thread = False
             
     def draw_figures(self, pygame: pygame, screen):
         for row in range(3):
@@ -76,3 +76,10 @@ class Board():
         if self.board[0][2] == self.board[1][1] == self.board[2][0] != 0:
             return self.board[0][2]
         return 0
+    
+    def is_full(self):
+        for row in range(3):
+            for col in range(3):
+                if self.board[row][col] == "":  # Se houver ao menos um espaço vazio, o tabuleiro NÃO está cheio
+                    return False
+        return True
