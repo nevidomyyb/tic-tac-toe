@@ -4,12 +4,15 @@ import time
 
 class Board():
     
-    def __init__(self, width, height):
-        self.board = [
-            ["", "", ""], 
-            ["", "", ""], 
-            ["", "", ""]
-        ]
+    def __init__(self, width, height, board_matrix=None):
+        if board_matrix is None:
+            self.board = [
+                ["", "", ""], 
+                ["", "", ""], 
+                ["", "", ""]
+            ]
+        else:
+            self.board=board_matrix
         self.width = width
         self.height = height
         self.square_size = width // 3

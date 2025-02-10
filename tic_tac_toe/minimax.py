@@ -1,9 +1,11 @@
 from board import Board
+import copy
 
 class Computer():
     
     def ai_move(self, board: Board, callback):
-        move = self.best_move(board)
+        b = Board(board.width, board.height, [row[:] for row in board.board])
+        move = self.best_move(b)
         if move:
             board.mark_position(move[1], move[0], "X")
         callback()
