@@ -42,16 +42,18 @@ class Game():
                     col = x // board.square_size
                     line = y // board.square_size
                     if self.p0 and not game_over:
-                        board.mark_position(col, line, "O")
-                        self.p0 = False
-                        computer_thinking = True
-                        winner = board.check_winner()
-                        if winner != 0 and winner != "":
-                            game_over = True
-                        for l in board.board:
-                            print(l)
-                        print('----------------------')
-                        threading.Thread(target=computer.ai_move, args=(board, lambda: self.set_ai_thinking(False))).start()
+                        if board.check_position(col, line):
+                            board.mark_position(col, line, "O")
+                            self.p0 = False
+                            computer_thinking = True
+                            winner = board.check_winner()
+                            if winner != 0 and winner != "":
+                                game_over = True
+                            for l in board.board:
+                                print(l)
+                            print('----------------------')
+                            if not game_over:
+                                threading.Thread(target=computer.ai_move, args=(board, lambda: self.set_ai_thinking(False))).start()
 
             clock.tick(60)
             board.draw_lines(pygame, screen)
@@ -63,7 +65,7 @@ class Game():
                 thread = threading.Thread(target=board.stop_threads)
                 thread.start()
                 print(f"Winner: {winner}")
-                time.sleep(10)
+                time.sleep(3)
                 pygame.quit()
                 running = False
                         

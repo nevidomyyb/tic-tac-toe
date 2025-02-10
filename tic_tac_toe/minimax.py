@@ -2,13 +2,13 @@ from board import Board
 
 class Computer():
     
-    def ai_move(self, board, callback):
+    def ai_move(self, board: Board, callback):
         move = self.best_move(board)
         if move:
             board.mark_position(move[1], move[0], "X")
         callback()
     
-    def minimax(self, board: Board, depth, is_maximazing, max_depth=5):
+    def minimax(self, board: Board, depth, is_maximazing, max_depth=10):
         
         winner = board.check_winner()
         if winner == "X":
