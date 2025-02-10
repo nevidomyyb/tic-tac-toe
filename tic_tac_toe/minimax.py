@@ -1,16 +1,17 @@
 from board import Board
-import copy
-
+from time import time
 class Computer():
     
     def ai_move(self, board: Board, callback):
         b = Board(board.width, board.height, [row[:] for row in board.board])
+        start = time()
         move = self.best_move(b)
+        print(f"Take : {time()-start:.5f} seconds to think.")
         if move:
             board.mark_position(move[1], move[0], "X")
         callback()
     
-    def minimax(self, board: Board, depth, is_maximazing, max_depth=10):
+    def minimax(self, board: Board, depth, is_maximazing, max_depth=100):
         
         winner = board.check_winner()
         if winner == "X":
@@ -51,7 +52,7 @@ class Computer():
             for col in range(3):
                 if board.check_position(col, row):
                     board.board[row][col] = "X"
-                    score = self.minimax(board, 0, False)
+                    score = self.minimax(board, 0, False, 100)
                     board.board[row][col] = ""
                     if score > best_score:
                         best_score = score
