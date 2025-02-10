@@ -68,17 +68,18 @@ class Board():
                     10)
     
     def check_winner(self):
-        for row in range(3):
-            if self.board[row][0] == self.board[row][1] == self.board[row][2] != 0:
-                return self.board[row][0]
-        for col in range(3):
-            if self.board[0][col] == self.board[1][col] == self.board[2][col] != 0:
-                return self.board[0][col]
-        if self.board[0][0] == self.board[1][1] == self.board[2][2] != 0:
+        for i in range(3):
+            if self.board[i][0] == self.board[i][1] == self.board[i][2] and self.board[i][0] != "":
+                return self.board[i][0]  
+            if self.board[0][i] == self.board[1][i] == self.board[2][i] and self.board[0][i] != "":
+                return self.board[0][i] 
+
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] and self.board[0][0] != "":
             return self.board[0][0]
-        if self.board[0][2] == self.board[1][1] == self.board[2][0] != 0:
+        if self.board[0][2] == self.board[1][1] == self.board[2][0] and self.board[0][2] != "":
             return self.board[0][2]
-        return 0
+
+        return None
     
     def is_full(self):
         for row in range(3):
