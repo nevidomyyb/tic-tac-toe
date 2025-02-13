@@ -8,7 +8,7 @@
 - [ ] Parse args to change difficulty, time before reset position and decision algorithm to be used
 - [x] Minimax
 - [ ] Alpha-beta pruning 
-- [ ] Monte Carlo Tree Search (MCTS)
+- [x] Monte Carlo Tree Search (MCTS)
 
 ### HOW RUN IT
 1. Clone this repository.
