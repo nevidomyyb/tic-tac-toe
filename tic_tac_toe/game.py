@@ -3,6 +3,7 @@ from board import Board
 import threading
 from minimax import Computer
 import time
+from mcts import MCTS
 class Game():
     
     def set_ai_thinking(self, value):
@@ -50,7 +51,15 @@ class Game():
                             if winner == "X" or winner == "O":
                                 game_over = True
                             if not game_over:
-                                threading.Thread(target=computer.ai_move, args=(board, lambda: self.set_ai_thinking(False))).start()
+                                # threading.Thread(target=computer.ai_move, args=(board, lambda: self.set_ai_thinking(False))).start()
+                                mcts = MCTS(board)
+                                root = mcts.run()
+                                node = mcts.best_move()
+                                print(root)
+                                print(node.last_move)
+                                board.mark_position(node.last_move[1], node.last_move[0], "X")
+                                self.set_ai_thinking(False)
+                                
 
             clock.tick(60)
             board.draw_lines(pygame, screen)
