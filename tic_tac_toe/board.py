@@ -20,6 +20,9 @@ class Board():
         self.stop_thread = False
     
     def check_position(self, col, line):
+        """
+        return True if position is empty
+        """
         if self.board[line][col] != "":
             return False
         return True
@@ -79,7 +82,7 @@ class Board():
         if self.board[0][2] == self.board[1][1] == self.board[2][0] and self.board[0][2] != "":
             return self.board[0][2]
 
-        return None
+        return ""
     
     def is_full(self):
         for row in range(3):
